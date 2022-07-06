@@ -1,10 +1,8 @@
 package handlers
 
 import (
-	"github.com/gorilla/mux"
 	"github.com/phanvanpeter/say-who-i-am/people/data"
 	"net/http"
-	"strconv"
 )
 
 // GetAll gets all the people from the storage and passes it to the client
@@ -25,8 +23,7 @@ func (p *People) Get(w http.ResponseWriter, r *http.Request) {
 	p.logger.Info("[DEBUG] get all people")
 	w.Header().Add("Content-Type", "application/json")
 
-	vars := mux.Vars(r)
-	id, err := strconv.Atoi(vars["id"])
+	id, err := GetPersonID(r)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		p.logger.Error("Invalid person ID", err)
