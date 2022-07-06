@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// NewRoutes manages the HTTP requests of the application
 func NewRoutes(logger hclog.Logger) *mux.Router {
 	r := mux.NewRouter()
 

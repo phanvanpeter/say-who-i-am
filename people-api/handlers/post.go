@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// Create creates a new person from the post request and add it in the storage
 func (p *People) Create(w http.ResponseWriter, r *http.Request) {
 	p.logger.Info("[DEBUG] create a new person")
 

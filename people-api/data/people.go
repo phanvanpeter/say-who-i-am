@@ -1,5 +1,6 @@
 package data
 
+// Person is a struct for person
 type Person struct {
 	ID          int     `json:"id"`
 	FirstName   string  `json:"firstName"`
@@ -9,16 +10,20 @@ type Person struct {
 	Stars       float32 `json:"stars"`
 }
 
+// People is an "alias" for the list of persons.
 type People []*Person
 
+// GetPeople returns all the people from the storage.
 func GetPeople() People {
 	return peopleList
 }
 
+// AddPerson adds a person to the storage.
 func AddPerson(p *Person) {
 	peopleList = append(peopleList, p)
 }
 
+// peopleList is a dummy storage for the people (list of persons).
 var peopleList = []*Person{
 	&Person{
 		ID:          1,

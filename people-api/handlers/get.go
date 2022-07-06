@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// GetAll gets all the people from the storage and pass it to the client
 func (p *People) GetAll(w http.ResponseWriter, r *http.Request) {
 	p.logger.Info("[DEBUG] get all people")
 	w.Header().Add("Content-Type", "application/json")
