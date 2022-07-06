@@ -10,6 +10,7 @@ import (
 
 // ValidatePerson validates the person in the request and calls next if ok
 func (p *People) ValidatePerson(next http.Handler) http.Handler {
+	p.logger.Info("[DEBUG] update a person")
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		person := &data.Person{}
@@ -19,7 +20,7 @@ func (p *People) ValidatePerson(next http.Handler) http.Handler {
 			return
 		}
 
-		//validate the person
+		//validate
 		validate := validator.New()
 		err = validate.Struct(person)
 		if err != nil {

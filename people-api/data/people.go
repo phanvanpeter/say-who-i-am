@@ -1,5 +1,9 @@
 package data
 
+import "fmt"
+
+var ErrPersonNotFound = fmt.Errorf("person not found")
+
 // Person is a struct for person
 type Person struct {
 	ID          int     `json:"id"`
@@ -23,6 +27,24 @@ func GetPeople() People {
 func AddPerson(p *Person) {
 	p.ID = getNextID()
 	peopleList = append(peopleList, p)
+}
+
+func UpdatePerson(p *Person) error {
+	i := findPerson(p.ID)
+	if i == -1 {
+		return ErrPersonNotFound
+	}
+	peopleList[i] = p
+	return nil
+}
+
+func findPerson(id int) int {
+	for i, p := range peopleList {
+		if p.ID == id {
+			return i
+		}
+	}
+	return -1
 }
 
 func getNextID() int {

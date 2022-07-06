@@ -20,5 +20,9 @@ func NewRoutes(logger hclog.Logger) *mux.Router {
 	postRoute.HandleFunc("/people", people.Create)
 	postRoute.Use(people.ValidatePerson)
 
+	putRoute := r.Methods(http.MethodPut).Subrouter()
+	putRoute.HandleFunc("/people", people.Update)
+	putRoute.Use(people.ValidatePerson)
+
 	return r
 }

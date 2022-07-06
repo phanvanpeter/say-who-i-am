@@ -13,4 +13,5 @@ func (p *People) Create(w http.ResponseWriter, r *http.Request) {
 
 	data.AddPerson(person)
 
+	w.WriteHeader(http.StatusNoContent)
 }
