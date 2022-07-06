@@ -3,7 +3,7 @@ package handlers
 import (
 	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
-	"github.com/phanvanpeter/say-who-i-am/people/data"
+	"github.com/phanvanpeter/say-who-i-am/people-api/data"
 	"net/http"
 	"strconv"
 )

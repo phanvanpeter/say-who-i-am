@@ -3,8 +3,8 @@ package routes
 import (
 	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
-	"github.com/phanvanpeter/say-who-i-am/people/data"
-	"github.com/phanvanpeter/say-who-i-am/people/handlers"
+	"github.com/phanvanpeter/say-who-i-am/people-api/data"
+	"github.com/phanvanpeter/say-who-i-am/people-api/handlers"
 	"net/http"
 )
 

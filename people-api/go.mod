@@ -1,4 +1,4 @@
-module github.com/phanvanpeter/say-who-i-am/people
+module github.com/phanvanpeter/say-who-i-am/people-api
 
 go 1.18
 

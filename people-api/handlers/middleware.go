@@ -3,7 +3,7 @@ package handlers
 import (
 	"context"
 	"fmt"
-	"github.com/phanvanpeter/say-who-i-am/people/data"
+	"github.com/phanvanpeter/say-who-i-am/people-api/data"
 	"net/http"
 )
 
