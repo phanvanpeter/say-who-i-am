@@ -4,6 +4,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
 	"github.com/phanvanpeter/say-who-i-am/people/handlers"
+	"net/http"
 )
 
 func NewRoutes(logger hclog.Logger) *mux.Router {
@@ -11,7 +12,8 @@ func NewRoutes(logger hclog.Logger) *mux.Router {
 
 	people := handlers.NewPeople(logger)
 
-	r.HandleFunc("/people", people.GetPeople)
+	getRoute := r.Methods(http.MethodGet).Subrouter()
+	getRoute.HandleFunc("/people", people.GetPeople)
 
 	return r
 }
