@@ -3,11 +3,12 @@ package data
 // Person is a struct for person
 type Person struct {
 	ID          int     `json:"id"`
-	FirstName   string  `json:"firstName"`
-	LastName    string  `json:"lastName"`
-	Age         int     `json:"age"`
+	FirstName   string  `json:"firstName" validate:"required"`
+	LastName    string  `json:"lastName" validate:"required"`
+	Email       string  `json:"email" validate:"required,email"`
+	Age         int     `json:"age" validate:"required,gte=15,lte=115"`
 	Description string  `json:"description"`
-	Stars       float32 `json:"stars"`
+	Stars       float32 `json:"stars" validate:"required,gte=1.0,lte=5.0"`
 }
 
 // People is an "alias" for the list of persons.
@@ -20,7 +21,13 @@ func GetPeople() People {
 
 // AddPerson adds a person to the storage.
 func AddPerson(p *Person) {
+	p.ID = getNextID()
 	peopleList = append(peopleList, p)
+}
+
+func getNextID() int {
+	lastID := peopleList[len(peopleList)-1].ID
+	return lastID + 1
 }
 
 // peopleList is a dummy storage for the people (list of persons).

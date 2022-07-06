@@ -9,6 +9,8 @@ type People struct {
 	logger hclog.Logger
 }
 
+type KeyPerson struct{}
+
 // NewPeople initializes a new handler for people
 func NewPeople(l hclog.Logger) *People {
 	return &People{
