@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	gohandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
 	"github.com/phanvanpeter/say-who-i-am/people/data"
@@ -44,9 +45,12 @@ func run() error {
 
 // newServer initializes and returns a new server
 func newServer(r *mux.Router) *http.Server {
+	// TODO implement a correct CORS protection
+	corsHandler := gohandlers.CORS(gohandlers.AllowedOrigins([]string{"*"}))
+
 	return &http.Server{
 		Addr:         bindAddr,
-		Handler:      r,
+		Handler:      corsHandler(r),
 		ErrorLog:     logger.StandardLogger(&hclog.StandardLoggerOptions{}),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
