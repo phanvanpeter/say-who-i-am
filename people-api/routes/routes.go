@@ -24,5 +24,8 @@ func NewRoutes(logger hclog.Logger) *mux.Router {
 	putRoute.HandleFunc("/people", people.Update)
 	putRoute.Use(people.ValidatePerson)
 
+	deleteRoute := r.Methods(http.MethodDelete).Subrouter()
+	deleteRoute.HandleFunc("/people/{id:[0-9]+}", people.Delete)
+
 	return r
 }
