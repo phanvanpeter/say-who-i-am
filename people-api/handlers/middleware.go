@@ -3,7 +3,6 @@ package handlers
 import (
 	"context"
 	"fmt"
-	"github.com/go-playground/validator/v10"
 	"github.com/phanvanpeter/say-who-i-am/people/data"
 	"net/http"
 )
@@ -21,12 +20,16 @@ func (p *People) ValidatePerson(next http.Handler) http.Handler {
 		}
 
 		//validate
-		validate := validator.New()
-		err = validate.Struct(person)
-		if err != nil {
-			// TODO return the errors to the client
-			_ = err.(validator.ValidationErrors)
-			http.Error(w, "Error validating the person", http.StatusUnprocessableEntity)
+		errs := p.validate.Validate(person)
+		if errs != nil {
+			p.logger.Error("error validating a person")
+
+			w.WriteHeader(http.StatusUnprocessableEntity)
+			d := ValidationError{
+				Messages: errs.Errors(),
+			}
+
+			_ = data.ToJSON(d, w)
 			return
 		}
 

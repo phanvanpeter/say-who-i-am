@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
+	"github.com/phanvanpeter/say-who-i-am/people/data"
 	"github.com/phanvanpeter/say-who-i-am/people/routes"
 	"net/http"
 	"os"
@@ -26,7 +27,9 @@ func main() {
 
 // run starts the server for people API
 func run() error {
-	r := routes.NewRoutes(logger)
+	v := data.NewValidator()
+
+	r := routes.NewRoutes(logger, v)
 
 	srv := newServer(r)
 	startServer(srv)
