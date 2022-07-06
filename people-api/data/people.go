@@ -23,6 +23,14 @@ func GetPeople() People {
 	return peopleList
 }
 
+func GetPerson(id int) (*Person, error) {
+	i := findPerson(id)
+	if i == -1 {
+		return nil, ErrPersonNotFound
+	}
+	return peopleList[i], nil
+}
+
 // AddPerson adds a person to the storage.
 func AddPerson(p *Person) {
 	p.ID = getNextID()
