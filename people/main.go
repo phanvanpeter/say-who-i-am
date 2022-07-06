@@ -63,6 +63,7 @@ func startServer(srv *http.Server) {
 }
 
 // waitForSignal waits for the os.Interrupt or os.Kill signal. Until then, the main goroutine is blocked.
+// In other words, the function waits for the termination of the running server.
 // This prevents from the immediate shutdown of the server.
 func waitForSignal(logger hclog.Logger) {
 	sigChan := make(chan os.Signal)
