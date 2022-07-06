@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func (p *People) GetPeople(w http.ResponseWriter, r *http.Request) {
+func (p *People) GetAll(w http.ResponseWriter, r *http.Request) {
 	p.logger.Info("[DEBUG] get all people")
 	w.Header().Add("Content-Type", "application/json")
 

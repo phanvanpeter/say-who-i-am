@@ -13,7 +13,10 @@ func NewRoutes(logger hclog.Logger) *mux.Router {
 	people := handlers.NewPeople(logger)
 
 	getRoute := r.Methods(http.MethodGet).Subrouter()
-	getRoute.HandleFunc("/people", people.GetPeople)
+	getRoute.HandleFunc("/people", people.GetAll)
+
+	postRoute := r.Methods(http.MethodPost).Subrouter()
+	postRoute.HandleFunc("/people", people.Create)
 
 	return r
 }
