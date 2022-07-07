@@ -5,6 +5,7 @@ import (
 	gohandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
+	"github.com/phanvanpeter/say-who-i-am/people-images/files"
 	"github.com/phanvanpeter/say-who-i-am/people-images/routes"
 	"net/http"
 	"os"
@@ -13,6 +14,7 @@ import (
 )
 
 var bindAddr = ":9090"
+var basePath = "./images"
 
 var logger hclog.Logger
 
@@ -27,7 +29,8 @@ func main() {
 
 // run starts the server for people API
 func run() error {
-	r := routes.NewRoutes(logger)
+	storage := files.NewLocal(basePath, 1024*1000*5)
+	r := routes.NewRoutes(logger, storage)
 
 	srv := newServer(r)
 	startServer(srv)
