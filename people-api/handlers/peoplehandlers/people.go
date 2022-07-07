@@ -1,4 +1,4 @@
-package handlers
+package peoplehandlers
 
 import (
 	"github.com/gorilla/mux"

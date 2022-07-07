@@ -1,4 +1,4 @@
-package handlers
+package peoplehandlers
 
 import (
 	"context"

@@ -1,4 +1,4 @@
-package handlers
+package peoplehandlers
 
 import (
 	"github.com/phanvanpeter/say-who-i-am/people-api/data"
