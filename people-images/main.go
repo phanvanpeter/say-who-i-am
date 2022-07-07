@@ -30,7 +30,7 @@ func main() {
 // run starts the server for people API
 func run() error {
 	storage := files.NewLocal(basePath, 1024*1000*5)
-	r := routes.NewRoutes(logger, storage)
+	r := routes.NewRoutes(logger, storage, basePath)
 
 	srv := newServer(r)
 	startServer(srv)
