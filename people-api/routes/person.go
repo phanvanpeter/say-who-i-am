@@ -5,7 +5,7 @@ import "net/http"
 func (r *Route) personRoute() {
 	getRoute := r.router.Methods(http.MethodGet).Subrouter()
 	getRoute.HandleFunc("/people", r.people.GetAll)
-	getRoute.HandleFunc("/people/{id:[0-9]+}", r.people.Get)
+	getRoute.HandleFunc("/people/{id:[0-9]+}", r.people.GetByID)
 
 	postRoute := r.router.Methods(http.MethodPost).Subrouter()
 	postRoute.HandleFunc("/people", r.people.Create)

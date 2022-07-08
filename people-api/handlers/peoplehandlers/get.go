@@ -18,8 +18,8 @@ func (p *People) GetAll(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Get gets the person with a given ID from the storage and passes it to the client
-func (p *People) Get(w http.ResponseWriter, r *http.Request) {
+// GetByID gets the person with a given ID from the storage and passes it to the client
+func (p *People) GetByID(w http.ResponseWriter, r *http.Request) {
 	p.logger.Info("[DEBUG] get all people")
 	w.Header().Add("Content-Type", "application/json")
 
