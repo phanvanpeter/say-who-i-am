@@ -1,6 +1,11 @@
 package data
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
+
+var ErrReviewNotFound = fmt.Errorf("review not found")
 
 type Review struct {
 	ID        int       `json:"id"`
@@ -16,6 +21,23 @@ type Reviews []*Review
 
 func GetReviews() Reviews {
 	return reviewList
+}
+
+func GetReview(id int) (*Review, error) {
+	i := findReview(id)
+	if i == -1 {
+		return nil, ErrReviewNotFound
+	}
+	return reviewList[i], nil
+}
+
+func findReview(id int) int {
+	for i, review := range reviewList {
+		if review.ID == id {
+			return i
+		}
+	}
+	return -1
 }
 
 var reviewList = Reviews{

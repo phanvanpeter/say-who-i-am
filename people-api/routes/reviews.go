@@ -5,7 +5,7 @@ import "net/http"
 func (r *Route) reviewsRoute() {
 	getRoute := r.router.Methods(http.MethodGet).Subrouter()
 	getRoute.HandleFunc("/reviews", r.reviews.GetAll)
-	//getRoute.HandleFunc("/people/{id:[0-9]+}", r.people.Get)
+	getRoute.HandleFunc("/reviews/{id:[0-9]+}", r.reviews.GetByID)
 
 	//postRoute := r.router.Methods(http.MethodPost).Subrouter()
 	//postRoute.HandleFunc("/people", r.people.Create)
