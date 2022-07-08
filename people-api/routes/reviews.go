@@ -7,9 +7,9 @@ func (r *Route) reviewsRoute() {
 	getRoute.HandleFunc("/reviews", r.reviews.GetAll)
 	getRoute.HandleFunc("/reviews/{id:[0-9]+}", r.reviews.GetByID)
 
-	//postRoute := r.router.Methods(http.MethodPost).Subrouter()
-	//postRoute.HandleFunc("/people", r.people.Create)
-	//postRoute.Use(r.people.ValidatePerson)
+	postRoute := r.router.Methods(http.MethodPost).Subrouter()
+	postRoute.HandleFunc("/reviews", r.reviews.Create)
+	postRoute.Use(r.reviews.ValidateReview)
 	//
 	//putRoute := r.router.Methods(http.MethodPut).Subrouter()
 	//putRoute.HandleFunc("/people", r.people.Update)

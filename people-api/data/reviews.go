@@ -9,12 +9,12 @@ var ErrReviewNotFound = fmt.Errorf("review not found")
 
 type Review struct {
 	ID        int       `json:"id"`
-	Title     string    `json:"title"`
-	From      *Person   `json:"from"`
-	To        *Person   `json:"to"`
-	Text      string    `json:"text"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
+	Title     string    `json:"title" validate:"required,min=3"`
+	From      *Person   `json:"from" validate:"required"`
+	To        *Person   `json:"to" validate:"required"`
+	Text      string    `json:"text" validate:"required,min=3"`
+	CreatedAt time.Time `json:"createdAt" validate:"required"`
+	UpdatedAt time.Time `json:"updatedAt" validate:"required"`
 }
 
 type Reviews []*Review
