@@ -18,13 +18,13 @@ Web app for writing reviews of people.
 #### PUT PERSON (id is obligatory)
 ``curl localhost:9090/people -v -X PUT -d '{"id": 3, "firstName": "Mike", "lastName":"Jackson", "email": "mike@jackson.com", "age": 53, "stars": 4.5}'``
 
-#### DELETE PERSON
+#### DELETE PERSON (id is obligatory)
 ``curl localhost:9090/people/3 -v -X DELETE``
 
-#### POST IMAGE
+#### POST IMAGE (id is obligatory)
 ``curl -v localhost:9090/images/1/test.png -X POST --data-binary @coffee.png``
 
-#### GET IMAGE
+#### GET IMAGE (id is obligatory)
 ``curl -v localhost:9090/images/1/coffee.png``
 
 #### GET REVIEWS
